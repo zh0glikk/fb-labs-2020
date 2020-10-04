@@ -1,4 +1,4 @@
-#include "Header.h"
+#include "Header.hpp"
 
 void setAlphabet(char letters[]) {
 	for (int i = 224; i <= 255; i++) {

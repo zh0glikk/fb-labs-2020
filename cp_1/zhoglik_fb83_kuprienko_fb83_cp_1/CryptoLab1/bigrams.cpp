@@ -1,4 +1,4 @@
-#include "Header.h"
+#include "Header.hpp"
 
 void filtrateArrayForBigram(char source[], int sourceLength, char target[]) {
 	for (int i = 0, j = 0; i < sourceLength; i++) {

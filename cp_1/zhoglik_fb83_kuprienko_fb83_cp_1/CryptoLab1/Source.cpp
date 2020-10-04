@@ -1,4 +1,4 @@
-#include "Header.h"
+#include "Header.hpp"
 
 int fileLen(std::ifstream* in) {
 	int length = 0;
@@ -86,9 +86,9 @@ void taskForTextWitoutSpaces() {
 	char* textArray = new char[length];
 	int realLength;
 
-	char letters[ALPHABET_LENGTH];
-	int letterAmount[ALPHABET_LENGTH];
-	double letterFrequency[ALPHABET_LENGTH];
+	char* letters = new char[ALPHABET_LENGTH];
+	int* letterAmount = new int[ALPHABET_LENGTH];
+	double* letterFrequency = new double[ALPHABET_LENGTH];
 	std::ofstream outLF("letterFrequencySorted.txt");
 
 	readFile(&in, textArray, length);
@@ -141,6 +141,10 @@ void taskForTextWitoutSpaces() {
 	std::cout << "Bigrams with intersection entrop: " << countEntropForBigram(bigramFrequencyIntersection) << std::endl;
 	std::cout << "Bigrams without intersection entrop: " << countEntropForBigram(bigramFrequencyWithoutIntersection) << std::endl;
 
+	in.close();
+	outLF.close();
+	outBI.close();
+	outBWI.close();
 }
 
 void taskForTextWithSpaces() {
@@ -151,9 +155,9 @@ void taskForTextWithSpaces() {
 	char* lettersArray = new char[length];
 	int realLength;
 
-	char letters[ALPHABET_LENGTH];
-	int letterAmount[ALPHABET_LENGTH];
-	double letterFrequency[ALPHABET_LENGTH];
+	char* letters = new char[ALPHABET_LENGTH];
+	int* letterAmount = new int[ALPHABET_LENGTH];
+	double* letterFrequency = new double[ALPHABET_LENGTH];
 	std::ofstream outLF("letterFrequencySortedWithSpace.txt");
 
 	readFile(&in, textArray, length);
@@ -201,7 +205,10 @@ void taskForTextWithSpaces() {
 	std::cout << "Bigrams with intersection entrop: " << countEntropForBigram(bigramFrequencyIntersection) << std::endl;
 	std::cout << "Bigrams without intersection entrop: " << countEntropForBigram(bigramFrequencyWithoutIntersection) << std::endl;
 
-
+	in.close();
+	outLF.close();
+	outBI.close();
+	outBWI.close();
 }
 
 int main() {
