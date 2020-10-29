@@ -39,8 +39,10 @@ public class KeyGenerator {
 //        }
 
         for ( int i = 0; i < keyLength; i++ ) {
-            int cipheredIndex = (int)lettersStatInEachBlock[i].charAt(30);
+            int cipheredIndex = (int)lettersStatInEachBlock[i].charAt(31);
             int expectedOpenedIndex = (int)sortedAlphabet.charAt(0);
+
+            System.out.println((char)cipheredIndex);
 
             int expectedKeyIndex = cipheredIndex - expectedOpenedIndex + diff;
             if ( expectedKeyIndex < 'а' ){

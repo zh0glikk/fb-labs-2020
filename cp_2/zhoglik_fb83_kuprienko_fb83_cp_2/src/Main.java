@@ -85,11 +85,11 @@ public class Main {
         ConfirmityIndexCounter cipheredTextIndex4 = new ConfirmityIndexCounter(encoderKey4.getCipheredText());
         ConfirmityIndexCounter cipheredTextIndex5 = new ConfirmityIndexCounter(encoderKey5.getCipheredText());
         ConfirmityIndexCounter cipheredTextIndex12 = new ConfirmityIndexCounter(encoderKey12.getCipheredText());
-        indexesResult += "cipheredTextKey2: " + cipheredTextIndex2.countCounformityIndex(2) + "\n";
-        indexesResult += "cipheredTextKey3: " + cipheredTextIndex2.countCounformityIndex(3) + "\n";
-        indexesResult += "cipheredTextKey4: " + cipheredTextIndex2.countCounformityIndex(4) + "\n";
-        indexesResult += "cipheredTextKey5: " + cipheredTextIndex2.countCounformityIndex(5) + "\n";
-        indexesResult += "cipheredTextKey12: " + cipheredTextIndex2.countCounformityIndex(12) + "\n";
+        indexesResult += "cipheredTextKey2: " + cipheredTextIndex2.countCounformityIndex(1) + "\n";
+        indexesResult += "cipheredTextKey3: " + cipheredTextIndex3.countCounformityIndex(1) + "\n";
+        indexesResult += "cipheredTextKey4: " + cipheredTextIndex4.countCounformityIndex(1) + "\n";
+        indexesResult += "cipheredTextKey5: " + cipheredTextIndex5.countCounformityIndex(1) + "\n";
+        indexesResult += "cipheredTextKey12: " + cipheredTextIndex12.countCounformityIndex(1) + "\n";
 
         try (FileWriter writer = new FileWriter("TextFiles/confirmityIndexesCipheredTextForKeys2-5_12.txt", false)) {
             writer.write(indexesResult);
@@ -132,7 +132,7 @@ public class Main {
         keyGenerator.generateKey();
         System.out.println(keyGenerator.getKey());
 
-        String key = "дшпильвойнамагаэн";
+        String key = "войнамагаэндшпиль";
         Decoder decoder = new Decoder(key, cipheredText);
         decoder.decode();
         System.out.println(key);
