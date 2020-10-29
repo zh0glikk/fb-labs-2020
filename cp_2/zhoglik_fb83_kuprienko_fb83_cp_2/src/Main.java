@@ -133,9 +133,17 @@ public class Main {
         System.out.println(keyGenerator.getKey());
 
         String key = "войнамагаэндшпиль";
+
         Decoder decoder = new Decoder(key, cipheredText);
         decoder.decode();
-        System.out.println(key);
-        System.out.println(decoder.getOpenedText());
+//        System.out.println(key);
+
+        try (FileWriter writer = new FileWriter("TextFiles/decodedTest.txt", false)) {
+            writer.write(decoder.getOpenedText());
+            writer.flush();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 }
