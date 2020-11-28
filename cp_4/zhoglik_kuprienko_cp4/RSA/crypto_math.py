@@ -76,7 +76,7 @@ def generate_prime_number(length):
     key = 0
     while not x:
         try:
-            key = random.randint(2 ** (length - 1), 2 ** length)
+            key = random.randint(2 ** (length-1) , 2 ** (length))
             if is_prime(key):
                 x = True
         except number_is_not_prime as exc:
@@ -92,6 +92,11 @@ def generate_key_pairs(length):
     if p * q <= p1 * q1:
         return p, q, p1, q1
     return generate_key_pairs(length)
+
+
+def generate_key_pair(length):
+    p, q = generate_prime_number(length), generate_prime_number(length)
+    return p, q
 
 
 def euler_func(p, q):

@@ -28,7 +28,7 @@ class RSA:
 
     @property
     def e(self):
-        return self._n
+        return self._e
 
     @p.setter
     def p(self, value):
@@ -74,7 +74,11 @@ class RSA:
     def verify(message, s, other_e, other_n):
         return message == pow(s, other_e, other_n)
 
-    def send_key(self, k, receiver):
+    def send_key(self, k, receiver, e=None, n=None):
+        if (e is not None):
+            receiver.e = e
+            receiver.n = n
+
         k1 = self.encrypt(k, receiver.e, receiver.n)
         _, s = self.sign(k, self.d, self.n)
         s1 = self.encrypt(s, receiver.e, receiver.n)
