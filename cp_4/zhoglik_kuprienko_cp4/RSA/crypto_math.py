@@ -65,6 +65,7 @@ def is_prime(number, attempts_amount=50):
                 attempts_passed += 1
         except number_is_not_prime as exc:
             print(exc)
+            return False
 
     if attempts_passed != attempts_amount:
         return False
@@ -76,7 +77,7 @@ def generate_prime_number(length):
     key = 0
     while not x:
         try:
-            key = random.randint(2 ** (length-1) , 2 ** (length))
+            key = random.randint(2 ** (length-1), 2 ** length)
             if is_prime(key):
                 x = True
         except number_is_not_prime as exc:

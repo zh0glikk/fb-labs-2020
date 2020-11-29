@@ -1,3 +1,4 @@
+from RSA.exceptions import bad_status
 from RSA.rsa import *
 from RSA.crypto_math import *
 import json
@@ -15,11 +16,14 @@ def generate_pair_less_then(n, length):
 if __name__ == '__main__':
     key_length = 256
     keygen_request = requests.get('http://asymcryptwebservice.appspot.com/rsa/serverKey?keySize=512')
+
+    # if keygen_request.status_code != 200:
+    #     raise bad_status()
+
     cookie = keygen_request.cookies
     cookie_name = cookie.keys()[0]
     cookie_value = cookie.values()[0]
-    print(f'cookie_name: {cookie_name}')
-    print(f'cookie_value: {cookie_value}')
+
 
     n1 = int(json.loads(keygen_request.text)['modulus'], 16)
     e1 = int(json.loads(keygen_request.text)['publicExponent'], 16)
@@ -27,6 +31,9 @@ if __name__ == '__main__':
     p, q = generate_pair_less_then(n1, key_length)
 
     rsa = RSA(p, q)
+
+    print(f'cookie_name: {cookie_name}')
+    print(f'cookie_value: {cookie_value}')
 
     print(f'n1: {hex(n1)}')
     print(f'e1: {hex(e1)}')
@@ -42,7 +49,7 @@ if __name__ == '__main__':
     modulus = hex(rsa.n)[2:]
     publicExponent = hex(rsa.e)[2:]
 
-
+    print(f'my random namber: {hex(x)}')
     print(f'key : {key}')
     print(f'signature : {signature}')
     print(f'modulus : {modulus}')
@@ -50,5 +57,5 @@ if __name__ == '__main__':
 
     request = f"http://asymcryptwebservice.appspot.com/rsa/receiveKey?key={key}&signature={signature}&modulus={modulus}&publicExponent={publicExponent}"
     cookie = {cookie_name: cookie_value}
-    print(f"Response from ReceiveKey request: {requests.get(request, cookie).text}")
+    print(f"Response from ReceiveKey request: {requests.get(request, cookies=cookie).text}")
 
